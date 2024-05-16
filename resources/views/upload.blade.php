@@ -11,6 +11,11 @@
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
+            @if (session('fileUrl'))
+                <div class="alert alert-info">
+                    File URL: <a href="{{ session('fileUrl') }}" target="_blank">{{ session('fileUrl') }}</a>
+                </div>
+            @endif
         @endif
         @if ($errors->any())
             <div class="alert alert-danger">

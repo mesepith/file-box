@@ -49,7 +49,7 @@ class FileController extends Controller
         if ($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-            $fileDomain = $request->getSchemeAndHttpHost();
+            $fileDomain = $request->getSchemeAndHttpHost(); // Get the protocol and domain
 
             $file = new File;
             $file->file_name = $fileName;
@@ -57,7 +57,9 @@ class FileController extends Controller
             $file->file_domain = $fileDomain;
             $file->save();
 
-            return redirect()->back()->with('success', 'File uploaded successfully.');
+            $fileUrl = $fileDomain . $file->file_path;
+
+            return redirect()->back()->with('success', 'File uploaded successfully.')->with('fileUrl', $fileUrl);
         }
 
         return redirect()->back()->with('error', 'No file was uploaded.');
