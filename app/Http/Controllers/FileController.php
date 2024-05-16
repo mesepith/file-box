@@ -22,7 +22,7 @@ class FileController extends Controller
         if ($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-            $fileDomain = $request->getHost();
+            $fileDomain = $request->getSchemeAndHttpHost();
 
             $file = new File;
             $file->file_name = $fileName;
@@ -49,7 +49,7 @@ class FileController extends Controller
         if ($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-            $fileDomain = $request->getHost();
+            $fileDomain = $request->getSchemeAndHttpHost();
 
             $file = new File;
             $file->file_name = $fileName;
