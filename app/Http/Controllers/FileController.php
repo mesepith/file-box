@@ -22,10 +22,12 @@ class FileController extends Controller
         if ($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileDomain = $request->getHost();
 
             $file = new File;
             $file->file_name = $fileName;
             $file->file_path = '/storage/' . $filePath;
+            $file->file_domain = $fileDomain;
             $file->save();
 
             return response()->json(['success' => 'File uploaded successfully.', 'file' => $file], 200);
@@ -47,10 +49,12 @@ class FileController extends Controller
         if ($request->file()) {
             $fileName = time().'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileDomain = $request->getHost();
 
             $file = new File;
             $file->file_name = $fileName;
             $file->file_path = '/storage/' . $filePath;
+            $file->file_domain = $fileDomain;
             $file->save();
 
             return redirect()->back()->with('success', 'File uploaded successfully.');
