@@ -12,7 +12,7 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'file' => 'required|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
         ]);
 
         if ($validator->fails()) {
